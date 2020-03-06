@@ -878,6 +878,9 @@ bool GrSmallPathRenderer::onDrawPath(const DrawPathArgs& args) {
     GR_AUDIT_TRAIL_AUTO_FRAME(args.fRenderTargetContext->auditTrail(),
                               "GrSmallPathRenderer::onDrawPath");
 
+    fprintf(stderr, "GrSmallPathRenderer::onDrawPath\n");
+    return false;
+
     // we've already bailed on inverse filled paths, so this is safe
     SkASSERT(!args.fShape->isEmpty());
     SkASSERT(args.fShape->hasUnstyledKey());

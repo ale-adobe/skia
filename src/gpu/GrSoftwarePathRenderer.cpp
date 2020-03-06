@@ -237,6 +237,10 @@ private:
 bool GrSoftwarePathRenderer::onDrawPath(const DrawPathArgs& args) {
     GR_AUDIT_TRAIL_AUTO_FRAME(args.fRenderTargetContext->auditTrail(),
                               "GrSoftwarePathRenderer::onDrawPath");
+    
+    fprintf(stderr, "GrSoftwarePathRenderer::onDrawPath\n");
+    return false;
+    
     if (!fProxyProvider) {
         return false;
     }

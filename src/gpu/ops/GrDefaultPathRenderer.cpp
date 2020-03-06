@@ -663,6 +663,9 @@ bool GrDefaultPathRenderer::onDrawPath(const DrawPathArgs& args) {
                               "GrDefaultPathRenderer::onDrawPath");
     GrAAType aaType = (GrAAType::kNone != args.fAAType) ? GrAAType::kMSAA : GrAAType::kNone;
 
+    fprintf(stderr, "GrDefaultPathRenderer::onDrawPath\n");
+    return false;
+
     return this->internalDrawPath(
             args.fRenderTargetContext, std::move(args.fPaint), aaType, *args.fUserStencilSettings,
             *args.fClip, *args.fViewMatrix, *args.fShape, false);

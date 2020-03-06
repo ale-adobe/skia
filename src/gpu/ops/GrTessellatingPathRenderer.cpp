@@ -400,6 +400,9 @@ private:
 bool GrTessellatingPathRenderer::onDrawPath(const DrawPathArgs& args) {
     GR_AUDIT_TRAIL_AUTO_FRAME(args.fRenderTargetContext->auditTrail(),
                               "GrTessellatingPathRenderer::onDrawPath");
+    fprintf(stderr, "GrTessellatingPathRenderer::onDrawPath\n");
+    return false;
+    
     SkIRect clipBoundsI;
     args.fClip->getConservativeBounds(args.fRenderTargetContext->width(),
                                       args.fRenderTargetContext->height(),

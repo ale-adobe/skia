@@ -31,6 +31,10 @@ GrDashLinePathRenderer::onCanDrawPath(const CanDrawPathArgs& args) const {
 bool GrDashLinePathRenderer::onDrawPath(const DrawPathArgs& args) {
     GR_AUDIT_TRAIL_AUTO_FRAME(args.fRenderTargetContext->auditTrail(),
                               "GrDashLinePathRenderer::onDrawPath");
+    
+    fprintf(stderr, "GrDashLinePathRenderer::onDrawPath\n");
+    return false;
+
     GrDashOp::AAMode aaMode;
     switch (args.fAAType) {
         case GrAAType::kNone:

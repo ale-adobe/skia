@@ -860,6 +860,9 @@ bool GrAAConvexPathRenderer::onDrawPath(const DrawPathArgs& args) {
     SkASSERT(args.fRenderTargetContext->numSamples() <= 1);
     SkASSERT(!args.fShape->isEmpty());
 
+    fprintf(stderr, "GrAAConvexPathRenderer::onDrawPath\n");
+    return false;
+
     SkPath path;
     args.fShape->asPath(&path);
 

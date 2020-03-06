@@ -22,9 +22,29 @@ bool GrCoverageCountingPathRenderer::IsSupported(const GrCaps& caps, CoverageTyp
     const GrShaderCaps& shaderCaps = *caps.shaderCaps();
     GrBackendFormat defaultA8Format = caps.getDefaultBackendFormat(GrColorType::kAlpha_8,
                                                                    GrRenderable::kYes);
+    
+    if (caps.driverBlacklistCCPR()) {
+        fprintf(stderr, "caps.driverBlacklistCCPR()\n");
+    }
+    if (!shaderCaps.integerSupport()) {
+        fprintf(stderr, "!shaderCaps.integerSupport()\n");
+    }
+    if (!caps.instanceAttribSupport()) {
+        fprintf(stderr, "!caps.instanceAttribSupport()\n");
+    }
+    if (!shaderCaps.floatIs32Bits()) {
+        fprintf(stderr, "!shaderCaps.floatIs32Bits()\n");
+    }
+    if (!defaultA8Format.isValid()) {
+        fprintf(stderr, "!defaultA8Format.isValid()\n");
+    }
+    if (!caps.halfFloatVertexAttributeSupport()) {
+        fprintf(stderr, "!caps.halfFloatVertexAttributeSupport()\n");
+    }
+
     if (caps.driverBlacklistCCPR() || !shaderCaps.integerSupport() ||
         !caps.instanceAttribSupport() || !shaderCaps.floatIs32Bits() ||
-        GrCaps::kNone_MapFlags == caps.mapBufferFlags() ||
+        // GrCaps::kNone_MapFlags == caps.mapBufferFlags() ||
         !defaultA8Format.isValid() || // This checks both texturable and renderable
         !caps.halfFloatVertexAttributeSupport()) {
         return false;
@@ -32,11 +52,19 @@ bool GrCoverageCountingPathRenderer::IsSupported(const GrCaps& caps, CoverageTyp
 
     GrBackendFormat defaultAHalfFormat = caps.getDefaultBackendFormat(GrColorType::kAlpha_F16,
                                                                       GrRenderable::kYes);
+    
+    if (!caps.allowCoverageCounting()) {
+        fprintf(stderr, "!caps.allowCoverageCounting()\n");
+    }
+    if (!defaultAHalfFormat.isValid()) {
+        fprintf(stderr, "!defaultAHalfFormat.isValid()\n");
+    }
     if (caps.allowCoverageCounting() &&
         defaultAHalfFormat.isValid()) { // This checks both texturable and renderable
         if (coverageType) {
             *coverageType = CoverageType::kFP16_CoverageCount;
         }
+        fprintf(stderr, "Using coverage counting variant\n");
         return true;
     }
 
@@ -47,6 +75,7 @@ bool GrCoverageCountingPathRenderer::IsSupported(const GrCaps& caps, CoverageTyp
         if (coverageType) {
             *coverageType = CoverageType::kA8_Multisample;
         }
+        fprintf(stderr, "Using MSAA variant\n");
         return true;
     }
 
@@ -168,6 +197,8 @@ GrPathRenderer::CanDrawPath GrCoverageCountingPathRenderer::onCanDrawPath(
 
 bool GrCoverageCountingPathRenderer::onDrawPath(const DrawPathArgs& args) {
     SkASSERT(!fFlushing);
+
+    fprintf(stderr, "GrCoverageCountingPathRenderer::onDrawPath\n");
 
     SkIRect clipIBounds;
     GrRenderTargetContext* rtc = args.fRenderTargetContext;

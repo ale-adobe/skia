@@ -100,7 +100,7 @@ struct SK_API GrContextOptions {
      * direction.
      */
     // FIXME: Once this is removed from Chrome and Android, rename to fEnable"".
-    bool fDisableCoverageCountingPaths = true;
+    bool fDisableCoverageCountingPaths = false;
 
     /**
      * Disables distance field rendering for paths. Distance field computation can be expensive,

@@ -1113,6 +1113,9 @@ bool GrAAHairLinePathRenderer::onDrawPath(const DrawPathArgs& args) {
                               "GrAAHairlinePathRenderer::onDrawPath");
     SkASSERT(args.fRenderTargetContext->numSamples() <= 1);
 
+    fprintf(stderr, "GrAAHairLinePathRenderer::onDrawPath\n");
+    return false;
+
     SkIRect devClipBounds;
     args.fClip->getConservativeBounds(args.fRenderTargetContext->width(),
                                       args.fRenderTargetContext->height(),

@@ -346,6 +346,9 @@ bool GrAALinearizingConvexPathRenderer::onDrawPath(const DrawPathArgs& args) {
     SkASSERT(!args.fShape->isEmpty());
     SkASSERT(!args.fShape->style().pathEffect());
 
+    fprintf(stderr, "GrAALinearizingConvexPathRenderer::onDrawPath\n");
+    return false;
+
     SkPath path;
     args.fShape->asPath(&path);
     bool fill = args.fShape->style().isSimpleFill();

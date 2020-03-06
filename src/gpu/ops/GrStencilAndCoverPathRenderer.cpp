@@ -87,6 +87,9 @@ bool GrStencilAndCoverPathRenderer::onDrawPath(const DrawPathArgs& args) {
                               "GrStencilAndCoverPathRenderer::onDrawPath");
     SkASSERT(!args.fShape->style().strokeRec().isHairlineStyle());
 
+    fprintf(stderr, "GrStencilAndCoverPathRenderer::onDrawPath\n");
+    return false;
+
     const SkMatrix& viewMatrix = *args.fViewMatrix;
 
     bool doStencilMSAA = GrAAType::kNone != args.fAAType;

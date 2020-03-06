@@ -21,7 +21,7 @@ GrShaderCaps::GrShaderCaps(const GrContextOptions& options) {
     fPathRenderingSupport = false;
     fDstReadInShaderSupport = false;
     fDualSourceBlendingSupport = false;
-    fIntegerSupport = false;
+    fIntegerSupport = true;
     fFBFetchSupport = false;
     fFBFetchNeedsCustomOutput = false;
     fUsesPrecisionModifiers = false;
